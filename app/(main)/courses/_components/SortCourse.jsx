@@ -21,7 +21,7 @@ const SortCourse = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Price</SelectLabel>
+                <SelectLabel>Fruits</SelectLabel>
                 {SORT_OPTIONS.map((option) => (
                   <SelectItem
                     className="cursor-pointer"

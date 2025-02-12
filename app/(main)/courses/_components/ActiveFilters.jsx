@@ -37,5 +37,4 @@ const ActiveFilters = ({filter}) => {
       </div>
     );
 };
-
 export default ActiveFilters;

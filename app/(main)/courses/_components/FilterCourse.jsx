@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState } from 'react';
 import {
     Accordion,
@@ -79,8 +80,6 @@ const FilterCourse = () => {
           }));
         }
       };
-
-      
     return (
         <div className="hidden lg:block">
             <Accordion defaultValue={["categories"]} type="multiple">
