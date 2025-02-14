@@ -9,13 +9,14 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion";
 import CourseModuleList from './module/CourseModuleList';
-const CourseCurriculum = () => {
+const CourseCurriculum = ({course}) => {
+  console.log(course)
     return (
         <>
         <div className="flex gap-x-5 items-center justify-center flex-wrap mt-4 mb-6 text-gray-600 text-sm">
                   <span className="flex items-center gap-1.5">
                     <BookCheck className="w-4 h-4" />
-                    12 Chapters
+                      {course?.modules?.length} Chapters
                   </span>
                   <span className="flex items-center gap-1.5">
                     <Clock10 className="w-4 h-4" />
