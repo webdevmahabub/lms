@@ -1,6 +1,6 @@
 import { Tabs,TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CourseOverview from "./CourseOverview";
-import CourseCurriculum from "./CourseCurriculum";
+import CourseCurriculam from "./CourseCurriculam";
 import CourseInstructor from "./CourseInstructor";
 import Image from "next/image";
 import { formatMyDate } from "@/lib/date";
@@ -44,7 +44,7 @@ const CourseDetails = ({course}) => {
             <Tabs defaultValue="overview" className="w-full">
               <TabsList className="grid w-full grid-cols-3 my-6 max-w-[768px]">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="curriculum">Curriculum</TabsTrigger>
+                <TabsTrigger value="curriculam">Curriculam</TabsTrigger>
                 <TabsTrigger value="instructor">Instructor</TabsTrigger>
                 {/* <TabsTrigger value="reviews">Reviews</TabsTrigger> */}
               </TabsList>
@@ -54,10 +54,10 @@ const CourseDetails = ({course}) => {
               </TabsContent>
 
 
-              <TabsContent value="curriculum">
+              <TabsContent value="curriculam">
                 {/* each tab content can be independent component */}
            
-                <CourseCurriculum course={course} />
+                <CourseCurriculam course={course} />
                 
               </TabsContent>
               <TabsContent value="instructor">
