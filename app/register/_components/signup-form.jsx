@@ -41,6 +41,7 @@ export function SignupForm({role}) {
       console.log(e.message);
     } 
   }
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -56,7 +57,7 @@ export function SignupForm({role}) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-      <form onSubmit={onSubmit} >
+        <form onSubmit={onSubmit} >
         <div className="grid gap-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
