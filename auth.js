@@ -5,7 +5,7 @@ import { bcrypt } from 'bcryptjs';
 export const {
     handlers: {GET, POST},
     auth,
-    singIn,
+    signIn,
     signOut,
 } = NextAuth({
     session: {
@@ -19,7 +19,7 @@ export const {
             const user = await User.findOne({email: credentials?.email });
             console.log(user);
             if (user) {
-                const isMatch = await bcrypt.compare(credentials?.password, user.password )
+                const isMatch = await bcrypt.compare(credentials.password, user.password )
                 if (isMatch) {
                     return user;
                 } else {
