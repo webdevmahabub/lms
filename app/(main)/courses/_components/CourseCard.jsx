@@ -6,10 +6,12 @@ import { ArrowRight } from "lucide-react";
 import { formatPrice } from "@/lib/formatPrice";
 import { ArrowRightIcon } from "lucide-react";
 import { BookOpen } from "lucide-react";
-import { getCategories } from "@/queries/categories";
 import EnrollCourse from '@/components/enroll-course';
+
 const CourseCard = ({course}) => {
     return (
+      <div>
+        
         <Link key={course.id} href={`/courses/${course.id}`}>
         <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
           <div className="relative w-full aspect-video rounded-md overflow-hidden">
@@ -33,20 +35,26 @@ const CourseCard = ({course}) => {
                 <span>{course?.modules?.length} Chapters</span>
               </div>
             </div>
+
             {/* <CourseProgress
               size="sm"
               value={80}
               variant={110 === 100 ? "success" : ""}
             /> */}
-            <div className="flex items-center justify-between mt-4">
-              <p className="text-md md:text-sm font-medium text-slate-700">
-                {formatPrice(course?.price)}
-              </p>
-              <EnrollCourse asLink={true} />
-            </div>
           </div>
         </div>
       </Link>
+
+      <div className="flex items-center justify-between mt-4">
+        <p className="text-md md:text-sm font-medium text-slate-700">
+          {formatPrice(course?.price)}
+        </p>
+
+        <EnrollCourse asLink={true} courseId={course?.id}  />
+      </div>
+
+     </div>
     );
 };
+
 export default CourseCard;
