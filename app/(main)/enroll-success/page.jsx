@@ -29,15 +29,37 @@ const Success = async ({ searchParams : {session_id, courseId} }) => {
     }
   );
 
-  console.log(checkoutSession); 
+    // console.log(checkoutSession);
+    const paymentIntent = checkoutSession?.payment_intent;
+    const paymentStatus = paymentIntent?.status;
+  
+    /// Cutomer Info 
+    const customerName = `${loggedInUser?.firstName} ${loggedInUser?.lastName
+    }`;
+    const customerEmail = loggedInUser?.email;
+    const productName = course?.title;
+    //console.log(customerName,customerEmail,productName);
+  
+    if (paymentStatus === "succeeded") {
+      /// Update data to enrollment table 
+  
+      // Send emails to the instructor and student who paid 
+      
+    }
 
   return (
     <div className="h-full w-full flex-1 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-6 max-w-[600px] text-center">
-        <CircleCheck className="w-32 h-32 bg-green-500 rounded-full p-0 text-white" />
+      {
+        paymentStatus === "succeeded" && (
+          <>
+          <CircleCheck className="w-32 h-32 bg-green-500 rounded-full p-0 text-white" />
         <h1 className="text-xl md:text-2xl lg:text-3xl">
-          Congratulations! You Enrollment was Successful
+        Congratulations! <strong>{customerName}</strong> Your Enrollment was Successful for <strong>{productName}</strong>
         </h1>
+        </>
+        )
+      } 
         <div className="flex items-center gap-3">
           <Button asChild size="sm">
             <Link href="/courses">Browse Courses</Link>
