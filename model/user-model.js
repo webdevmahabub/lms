@@ -43,6 +43,6 @@ const userSchema = new Schema({
         required: false,
         type: String,
         default: ""
-    } ,
+    }
 });
 export const User = mongoose.models.User ?? mongoose.model("User",userSchema);
