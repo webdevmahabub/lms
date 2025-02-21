@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import CourseDetailsIntro from "./_components/CourseDetailsIntro";
 import CourseDetails from "./_components/CourseDetails";
 import Testimonials from "./_components/Testimonials";
@@ -13,11 +13,7 @@ const SingleCoursePage = async ({ params: {id} }) => {
 
   return (
     <>
-      <CourseDetailsIntro 
-        title={course?.title}
-        subtitle={course?.subtitle}
-        thumbnail={course?.thumbnail}
-      />
+       <CourseDetailsIntro course={course} />
 
       <CourseDetails course={course} />
       {
