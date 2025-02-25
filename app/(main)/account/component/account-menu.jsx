@@ -1,4 +1,5 @@
 "use client";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -15,7 +16,7 @@ function Menu() {
 			{menu.map((item, i) => (
 				<li className="navbar-item account-menu" key={i}>
 					<Link
-						href={item.href}
+						href="#" onClick={() => {signOut()}}
 						className={`navbar-link flex items-center py-2 rounded ${
 							pathname === item.href ? "text-primary" : "text-slate-400"
 						}`}>
