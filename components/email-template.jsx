@@ -27,7 +27,7 @@ export const EmailTemplate = ({ message }) => {
                 textAlign: "center",
               }}
             >
-              Your Message
+              Green Learning
             </h1>
           </div>
           <div style={{ padding: "20px" }}>
@@ -56,7 +56,7 @@ export const EmailTemplate = ({ message }) => {
               }}
             >
               This email was sent by Your Company. If you have any questions, feel
-              free to <a href="mailto:support@example.com" style={{ color: "#007BFF" }}>contact us</a>.
+              free to <a href="mailto:support@greenviewsoft.com" style={{ color: "#007BFF" }}>contact us</a>.
             </p>
           </div>
         </div>
