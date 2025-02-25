@@ -13,7 +13,7 @@ const PersonalDetails = ({userInfo}) => {
     // console.log(userInfo);
     const [infoState, setInfoState] = useState({
         "firstName" : userInfo.firstName,
-        "lastName" : userInfo.lastName,
+        "lastName" : userInfo.lastName, 
         "email" : userInfo.email,
         "designation" : userInfo.designation,
         "bio" : userInfo.bio, 
