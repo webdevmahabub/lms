@@ -11,7 +11,7 @@ export async function updateUserInfo(email,updatedData){
         await User.findOneAndUpdate(filter,updatedData);
         revalidatePath('/account');
     } catch (error) {
-        throw new Error(error);
+        throw Error(error);
     }
 }
 // End method 
@@ -32,6 +32,6 @@ export async function changePassword(email, oldPassword, newPassword) {
         await User.findOneAndUpdate(filter,dataToUpdate);
         revalidatePath('/account');
     } catch (error) {
-        throw new Error(error);
+        throw Error(error);
     } 
 }
