@@ -15,10 +15,10 @@ async function EnrolledCourses() {
 	}
 
 	const loggedInUser = await getUserByEmail(session?.user?.email);
-	// console.log(loggedInUser);
+	    // console.log(loggedInUser);
 
 	const enrollments = await getEnrollmentsForUser(loggedInUser?.id)
-	console.log(enrollments);
+	    // console.log(enrollments);
 	return (
 		<div className="grid sm:grid-cols-2 gap-6">
 		{
