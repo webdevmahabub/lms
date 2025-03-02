@@ -71,6 +71,7 @@ export async function getCourseDetailsByInstructor(instructorId){
         "courses" : courses.length,
         "enrollments": totalEnrollments,
         "reviews" : totalTestimonials.length,
-        "ratings" : avgRating.toPrecision(2)
+        "ratings" : avgRating.toPrecision(2),
+        "inscourses" : courses
     } 
 }
