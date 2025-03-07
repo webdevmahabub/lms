@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 export function SignupForm({role}) {
   const router = useRouter();
   async function onSubmit(event) {
@@ -36,7 +37,14 @@ export function SignupForm({role}) {
         })
       });
       response.status === 201 && router.push("/login")
-      
+
+    if (!!response.error) {
+        console.log(response.error)
+        setError(response.error);
+    } else {
+      toast.success("Register Successfuly!");
+      router.push("/login")
+    }      
     } catch (e) {
       console.log(e.message);
     } 
