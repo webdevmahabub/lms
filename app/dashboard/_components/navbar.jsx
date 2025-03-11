@@ -49,7 +49,14 @@ export const Navbar = () => {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56 mt-4">
-          <Link href="#" onClick={() => {signOut()}} >Logout</Link>
+          
+          <DropdownMenuItem className="cursor-pointer">
+              <Link href="/account">Profile</Link>
+           </DropdownMenuItem>
+
+            <DropdownMenuItem className="cursor-pointer">
+              <Link href="#" onClick={() => {signOut()}} >Logout</Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

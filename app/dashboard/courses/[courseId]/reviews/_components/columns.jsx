@@ -1,5 +1,5 @@
 "use client";
-
+import StarRating from "@/components/start-rating";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -39,6 +39,10 @@ export const columns = [
           Rating <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
+    },
+    cell: ({row}) => {
+      const rating = row.getValue("rating");
+      return <div className="flex"><StarRating rating={rating} /> </div>
     },
   },
   {
