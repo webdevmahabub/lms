@@ -13,11 +13,13 @@ export async function getReport(filter) {
             .lean();
 
         if (!report) {
-            throw new Error("No report found for the given filter");
+            console.log("No report found for filter:", filter);
+            return null; // Graceful handling
         }
 
         return replaceMongoIdInObject(report);
     } catch (error) {
+        console.error("Error in getReport:", error);
         throw new Error(error.message || "Failed to fetch report");
     }
 }
