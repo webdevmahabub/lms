@@ -1,5 +1,7 @@
+import { getCourseDetails } from "@/queries/courses";
 import { columns } from "./_components/columns";
 import { DataTable } from "./_components/data-table";
+import { ENROLLMENT_DATA, getInstructorDashboardData } from "@/lib/dashboard-helper";
 
 const enrollments = [
   {
@@ -22,9 +24,13 @@ const enrollments = [
       quizMark: 50,
     },
   },
-];
-const EnrollmentsPage = async () => {
-  return (
+]; 
+const EnrollmentsPage = async ({ params: {courseId} }) => {
+
+  const course = await getCourseDetails(courseId);
+  const allEnrollments = await getInstructorDashboardData(ENROLLMENT_DATA);
+
+  return ( 
     <div className="p-6">
       {/* <Link href="/teacher/create">
         <Button>New Course</Button>
