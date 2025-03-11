@@ -55,7 +55,7 @@ export const EmailTemplate = ({ message }) => {
                 color: "#777",
               }}
             >
-              This email was sent by Your Company. If you have any questions, feel
+              This email was sent by GreenViewSoft Company. If you have any questions, feel
               free to <a href="mailto:support@greenviewsoft.com" style={{ color: "#007BFF" }}>contact us</a>.
             </p>
           </div>
