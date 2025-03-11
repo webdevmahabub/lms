@@ -57,12 +57,13 @@ function groupBy(array, keyFn){
 
 export async function getCourseDetailsByInstructor(instructorId,expand){
 
-    const courses = await Course.find({instructor: instructorId })
+    const publishCourses = await Course.find({instructor: instructorId, active:true })
     .populate({path: "category", model: Category })
+    .populate({path: "testimonials", model: Testimonial })
     .populate({ path: "instructor", model: User})
     .lean();
     const enrollments = await Promise.all(
-        courses.map(async (course) => {
+        publishCourses.map(async (course) => {
             const enrollment = await getEnrollmentsForCourse(course.
                 _id.toString());
                 return enrollment;
@@ -73,7 +74,7 @@ export async function getCourseDetailsByInstructor(instructorId,expand){
         const groupByCourses = groupBy(enrollments.flat(), (item) => item.course);
 
         /// Calculate total revenue 
-        const totalRevenue = courses.reduce((acc, course) => {
+        const totalRevenue = publishCourses.reduce((acc, course) => {
             const enrollmentsForCourse = groupByCourses[course._id] || [];
             return acc + enrollmentsForCourse.length * course.price; 
         },0);
@@ -85,7 +86,7 @@ export async function getCourseDetailsByInstructor(instructorId,expand){
     },0);
     
     const tesimonials = await Promise.all(
-        courses.map(async (course) => {
+        publishCourses.map(async (course) => {
             const tesimonial = await getTestimonialsForCourse(course.
                 _id.toString());
                 return tesimonial;
@@ -95,30 +96,31 @@ export async function getCourseDetailsByInstructor(instructorId,expand){
     const avgRating = (totalTestimonials.reduce(function (acc, obj) {
         return acc + obj.rating;
     },0)) / totalTestimonials.length; 
-    const firstName = courses.length > 0 ? courses[0]?.instructor?.
+    const firstName = publishCourses.length > 0 ? publishCourses[0]?.instructor?.
     firstName : "Unknown";
-    const lastName = courses.length > 0 ? courses[0]?.instructor?.
+    const lastName = publishCourses.length > 0 ? publishCourses[0]?.instructor?.
     lastName : "Unknown";
     const fullInsName = `${firstName} ${lastName}`;
 
-    const Designation = courses.length > 0 ? courses[0]?.instructor?.
+    const Designation = publishCourses.length > 0 ? publishCourses[0]?.instructor?.
     designation : "Unknown"; 
 
-    const insImage = courses.length > 0 ? courses[0]?.instructor?.
+    const insImage = publishCourses.length > 0 ? publishCourses[0]?.instructor?.
     profilePicture : "Unknown"; 
     if (expand) {
+        const allCourses = await Course.find({instructor: instructorId }).lean();
         return{
-        "courses" : courses?.flat(),
+        "courses" : allCourses?.flat(),
         "enrollments": enrollments?.flat(),
         "reviews" : totalTestimonials,
         }
     }
     return {
-        "courses" : courses.length,
+        "courses" : publishCourses.length,
         "enrollments": totalEnrollments,
         "reviews" : totalTestimonials.length,
         "ratings" : avgRating.toPrecision(2),
-        "inscourses" : courses,
+        "inscourses" : publishCourses,
         "revenue": totalRevenue,
         fullInsName,
         Designation,
