@@ -62,7 +62,7 @@ const EditCourse = async ({ params: {courseId} }) => {
                 <IconBadge icon={ListChecks} />
                 <h2 className="text-xl">Course Modules</h2>
               </div>
-
+               
               <ModulesForm initialData={[]} courseId={[]} />
             </div>
             <div>
