@@ -18,6 +18,6 @@ export async function createModule(data){
         return createdModule;
         
     } catch (e) {
-        throw new Error(e);
+        console.log(e);
     }
 }
