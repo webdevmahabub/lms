@@ -4,13 +4,13 @@ const moduleSchema = new Schema({
         required: true,
         type: String
     },
-    description:{
-        required: true,
+    description:{ 
         type: String
     },
-    status:{
+    active:{
         required: true,
-        type: String
+        default: false,
+        type: Boolean
     },
     slug:{
         required: true,
@@ -18,12 +18,15 @@ const moduleSchema = new Schema({
     },
     course:{
         required: true,
-        type: String
+        type: Schema.ObjectId,
     },
     lessonIds:{
         required: true,
-        type: [String]
+        type: [Schema.ObjectId]
     },
-     
+    order:{
+        require: true,
+        type: Number
+    }
 });
 export const Module = mongoose.models.Module ?? mongoose.model("Module",moduleSchema);
