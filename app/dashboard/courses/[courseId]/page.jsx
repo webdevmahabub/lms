@@ -16,11 +16,22 @@ import AlertBanner from "@/components/alert-banner";
 import { QuizSetForm } from "./_components/quiz-set-form";
 import { getCourseDetails } from "@/queries/courses";
 import { SubTitleForm } from "./_components/subtitle-form";
+import { getCategories } from "@/queries/categories";
 
 const EditCourse = async ({ params: {courseId} }) => {
 
   const course = await getCourseDetails(courseId);
-  //console.log(course);
+  const categories = await getCategories();
+  
+
+  const mappedCategories = categories.map(c => {
+    return {
+      value: c.title,
+      label: c.title,
+      id: c.id,
+    }
+  });
+ // console.log(mappedCategories);
 
   return (
     <>
@@ -52,7 +63,7 @@ const EditCourse = async ({ params: {courseId} }) => {
             />
             <DescriptionForm initialData={{description: course?.description }} courseId={courseId} />
             <ImageForm initialData={{}} courseId={1} />
-            <CategoryForm initialData={{}} courseId={1} />
+            <CategoryForm initialData={{value: course?.category?.title }} courseId={courseId} options={mappedCategories} />
 
             <QuizSetForm initialData={{}} courseId={1} />
           </div>
