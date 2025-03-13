@@ -13,7 +13,7 @@ import { LessonForm } from "./_components/lesson-form";
 import { CourseActions } from "../../_components/course-action";
 import { getModule } from "@/queries/modules";
 
-const Module = async ({ params:{courseId, moduleId} }) => {
+const Module = async ({ params:{courseId, moduleId} }) => { 
 
   const module = await getModule(moduleId);
   console.log(module); 
