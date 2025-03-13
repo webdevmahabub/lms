@@ -19,7 +19,7 @@ export async function createLesson(data){
         return createdLesson;
         
     } catch (e) {
-        throw new Error(e);
+        console.log(e);
     }
 }
  
