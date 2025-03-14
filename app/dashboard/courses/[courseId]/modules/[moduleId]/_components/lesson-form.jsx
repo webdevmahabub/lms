@@ -21,7 +21,7 @@ import { toast } from "sonner";
 import { LessonList } from "./lesson-list";
 import { LessonModal } from "./lesson-modal";
 import { getSlug } from "@/lib/convertData";
-import { createLesson } from "@/app/actions/lesson";
+import { createLesson, reOrderLesson } from "@/app/actions/lesson";
 
 const formSchema = z.object({
   title: z.string().min(1),
@@ -79,7 +79,7 @@ export const LessonForm = ({ initialData, moduleId }) => {
     console.log({ updateData });
     try {
       setIsUpdating(true);
-
+      await reOrderLesson(updateData);
       toast.success("Lesson reordered");
       router.refresh();
     } catch {
@@ -101,7 +101,7 @@ export const LessonForm = ({ initialData, moduleId }) => {
         </div>
       )}
       <div className="font-medium flex items-center justify-between">
-        Module Lessions
+        Module Lessons
         <Button variant="ghost" onClick={toggleCreating}>
           {isCreating ? (
             <>Cancel</>
