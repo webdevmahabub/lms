@@ -19,8 +19,9 @@ const lessonSchema = new Schema({
     },    
     active:{
         required: true,
+        default: false,
         type: Boolean
-    },    
+    },
     slug:{
         required: true,
         type: String
