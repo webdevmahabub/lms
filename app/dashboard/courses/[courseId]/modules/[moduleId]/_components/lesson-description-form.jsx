@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { Textarea } from "@/components/ui/textarea";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -27,7 +28,9 @@ const formSchema = z.object({
 export const LessonDescriptionForm = ({ initialData, courseId, lessonId }) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
-  const [description, setDescription] = useState(initialData?.description); 
+
+  const [description, setDescription] = useState(initialData?.description);
+
   const toggleEdit = () => setIsEditing((current) => !current);
 
   const form = useForm({
@@ -66,20 +69,7 @@ export const LessonDescriptionForm = ({ initialData, courseId, lessonId }) => {
           )}
         </Button>
       </div>
-      {!isEditing && (
-        <div
-          className={cn(
-            "text-sm mt-2",
-            !initialData.description && "text-slate-500 italic"
-          )}
-        >
-          {!initialData.description && "No description"}
-          {initialData.description && (
-            <Preview value={initialData.description} />
-          )}
-        </div>
-      )}
-      {!isEditing && (
+  {!isEditing && (
           <p className="text-sm mt-2">{description}</p>
         )}
         {isEditing && (

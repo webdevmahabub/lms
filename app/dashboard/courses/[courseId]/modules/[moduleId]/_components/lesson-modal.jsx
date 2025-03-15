@@ -5,7 +5,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger, 
 } from "@/components/ui/dialog";
 import { LayoutDashboard } from "lucide-react";
 import { Eye } from "lucide-react";
@@ -17,7 +17,9 @@ import { LessonDescriptionForm } from "./lesson-description-form";
 import { LessonAccessForm } from "./lesson-access-form";
 import { VideoUrlForm } from "./video-url-form";
 import { CourseActions } from "../../../_components/course-action";
+
 export const LessonModal = ({ open, setOpen,courseId,lesson }) => {
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {/* <DialogTrigger>Open</DialogTrigger> */}
@@ -27,7 +29,6 @@ export const LessonModal = ({ open, setOpen,courseId,lesson }) => {
           e.preventDefault();
         }}
       >
-
         <DialogHeader>
           <DialogTitle>Lesson Editor</DialogTitle>
           <DialogDescription>
@@ -74,9 +75,9 @@ export const LessonModal = ({ open, setOpen,courseId,lesson }) => {
                   <h2 className="text-xl">Access Settings</h2>
                 </div>
                 <LessonAccessForm
-                  initialData={{}}
-                  courseId={"1"}
-                  chapterId={"1"}
+                 initialData={{isFree: lesson?.access !== 'private'}}
+                 courseId={courseId}
+                 lessonId={lesson?.id}
                 />
               </div>
             </div>
@@ -87,10 +88,11 @@ export const LessonModal = ({ open, setOpen,courseId,lesson }) => {
               </div>
               <VideoUrlForm
                 initialData={{
-                  url: "https://www.youtube.com/embed/LJi2tiWiYmI?si=-vs8fO-xzWmu7ztG",
+                  url: lesson?.video_url,
+                  duration: lesson?.duration
                 }}
-                courseId={1}
-                lessonId={1}
+                courseId={courseId}
+                lessonId={lesson?.id}
               />
             </div>
           </div>
