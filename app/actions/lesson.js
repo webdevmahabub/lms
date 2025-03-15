@@ -36,3 +36,11 @@ export async function reOrderLesson(data){
     }
 
 }
+
+export async function updateLesson(lessonId, data) {
+    try {
+        await Lesson.findByIdAndUpdate(lessonId,data);
+    } catch (error) {
+        throw new Error(e);
+    }
+}
