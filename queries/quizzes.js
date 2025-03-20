@@ -12,7 +12,7 @@ export async function getAllQuizSets(excludeUnPublished){
         }
         return replaceMongoIdInArray(quizSets);
     } catch (error) {
-        throw new Error(error);
+        console.log(error);
     } 
 }
 
@@ -25,6 +25,6 @@ export async function getQuizSetById(id){
         }).lean();
         return replaceMongoIdInObject(quizSet);
     } catch (error) {
-        throw new Error(error);
+        console.log(error);
     } 
 }
