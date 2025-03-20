@@ -105,9 +105,7 @@ const EditQuizSet = async ({ params: {quizSetId} }) => {
             </div>
             <div className="max-w-[800px]">
               <TitleForm
-                initialData={{
-                  title: "Reactive Accelerator",
-                }}
+                initialData={{ title: quizSet.title  }} quizSetId={quizSetId}
               />
             </div>
 
