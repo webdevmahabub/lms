@@ -1,6 +1,8 @@
 "use server"
 import { Quizset } from "@/model/quizset-model";
 import { getSlug } from './../../lib/convertData';
+import { createQuiz } from "@/queries/quizzes";
+
 
 export async function updateQuizSet(quizset, dataToUpdate){
     try {
@@ -36,9 +38,14 @@ export async function addQuizToQuizSet(quizSetId, quizData){
             is_correct: quizData.optionD.isTrue  
         }, 
     ];
-    console.log(transformedQuizData);
+    // console.log(transformedQuizData);
+    const createdQuizId = await createQuiz(transformedQuizData);
+
+    const quizSet = await Quizset.findById(quizSetId);
+    quizSet.quizIds.push(createdQuizId);
+    quizSet.save();
 
     } catch (error) {
-        
+        console.log(error);
     }
 }
