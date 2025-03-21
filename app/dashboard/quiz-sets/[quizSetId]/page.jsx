@@ -48,13 +48,18 @@ const EditQuizSet = async ({ params: {quizSetId} }) => {
           {/* Quiz List */}
           <div className="max-lg:order-2">
             <h2 className="text-xl mb-6">Quiz List</h2>
-            <AlertBanner
+      {
+        quizzes.length === 0 && (
+             <AlertBanner
               label="No Quiz are in the set, add some using the form above."
               variant="warning"
               className="rounded mb-6"
             />
+        )
+      }    
+          
             <div className="space-y-6">
-            {quizzes.map((quiz) => {
+              {quizzes.map((quiz) => {
                 return (
                   <div
                     key={quiz.id}
@@ -83,7 +88,7 @@ const EditQuizSet = async ({ params: {quizSetId} }) => {
                       })}
                     </div>
                     <div className="flex items-center justify-end gap-2 mt-6">
-                      <QuizCardActions quiz={quiz} quizSetId={quizSetId} />  
+       <QuizCardActions quiz={quiz} quizSetId={quizSetId} />     
                     </div>
                   </div>
                 );
@@ -102,7 +107,7 @@ const EditQuizSet = async ({ params: {quizSetId} }) => {
             </div>
 
             <div className="max-w-[800px]">
-            <AddQuizForm quizSetId={quizSetId} />
+              <AddQuizForm quizSetId={quizSetId} />
             </div>
           </div>
         </div>
