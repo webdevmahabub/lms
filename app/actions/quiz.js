@@ -76,3 +76,13 @@ export async function changeQuizPublishState(quizSetId) {
         console.log(error);
     }
 }
+
+export async function doCreateQuizSet(data){
+    try {
+        data['slug'] = getSlug(data.title);
+        const createdQuizSet = await Quizset.create(data);
+        return createdQuizSet?._id.toString();
+    } catch (error) {
+        throw new Error(error);
+    }
+}
