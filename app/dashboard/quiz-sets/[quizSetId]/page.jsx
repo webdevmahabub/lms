@@ -33,16 +33,18 @@ const EditQuizSet = async ({ params: {quizSetId} }) => {
  // console.log(quizzes);
 
   // const [quizes, setQuizes] = useState(initialQuizes);
-  
+
   return (
     <>
-      <AlertBanner
-        label="This course is unpublished. It will not be visible in the course."
+      {
+        !quizSet.active && <AlertBanner
+        label="This Quiz is unpublished. It will not be visible in the course."
         variant="warning"
-      />
+        />
+      }
       <div className="p-6">
         <div className="flex items-center justify-end">
-          <QuizSetAction />
+        <QuizSetAction quizSetId={quizSetId} quiz={quizSet?.active} quizId={quizSet?.id} />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2  gap-6 mt-16">
           {/* Quiz List */}

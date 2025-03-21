@@ -62,6 +62,17 @@ export async function deleteQuiz(quizSetId, quizId) {
         await Quiz.findByIdAndDelete(quizId);
         
     } catch (error) {
-        throw new Error(error);
+        console.log(error);
+    }
+}
+
+
+export async function changeQuizPublishState(quizSetId) {
+    const quiz = await Quizset.findById(quizSetId);
+    try {
+        const res = await Quizset.findByIdAndUpdate(quizSetId, {active: !quiz.active},{lean: true});
+        return res.active;
+    } catch (error) {
+        console.log(error);
     }
 }
