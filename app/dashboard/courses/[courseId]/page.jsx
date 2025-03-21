@@ -19,6 +19,7 @@ import { SubTitleForm } from "./_components/subtitle-form";
 import { getCategories } from "@/queries/categories";
 import { replaceMongoIdInArray } from "@/lib/convertData";
 import { ObjectId } from "mongoose";
+import { getAllQuizSets } from "@/queries/quizzes";
 
 const EditCourse = async ({ params: {courseId} }) => {
 
@@ -53,6 +54,19 @@ const EditCourse = async ({ params: {courseId} }) => {
  const rawmodules = await replaceMongoIdInArray(course?.modules).sort((a,b) => a.order - b.order);
 
  const modules = sanitizeData(rawmodules);
+
+ const allQuizSets = await getAllQuizSets(true);
+  let mappedQuizSet = [];
+  if (allQuizSets && allQuizSets.length > 0) {
+    mappedQuizSet = allQuizSets.map(quizSet => {
+      return {
+        value: quizSet.id,
+        label: quizSet.title,
+      }
+    })
+  }
+
+  //console.log(mappedQuizSet);
 
   return (
     <>
@@ -89,7 +103,7 @@ const EditCourse = async ({ params: {courseId} }) => {
             <ImageForm initialData={{imageUrl: `/assets/images/courses/${course?.thumbnail}`}} courseId={courseId} />
             <CategoryForm initialData={{value: course?.category?.title }} courseId={courseId} options={mappedCategories} />
 
-            <QuizSetForm initialData={{}} courseId={1} />
+            <QuizSetForm initialData={{ quizSetId: course?.quizSet?._id.toString() }} courseId={courseId} options={mappedQuizSet} />
           </div>
           <div className="space-y-6">
             <div>
