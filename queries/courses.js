@@ -6,6 +6,8 @@ import { User } from "@/model/user-model";
 import { replaceMongoIdInArray, replaceMongoIdInObject } from "@/lib/convertData";
 import { getEnrollmentsForCourse } from "./enrollments";
 import { getTestimonialsForCourse } from "./testimonials";
+import { Lesson } from "@/model/lesson.model";
+
 export async function getCourseList() {
     const courses = await Course.find({active:true}).select(["title","subtitle","thumbnail","modules","price","category","instructor"]).populate({
         path: "category",
@@ -18,7 +20,11 @@ export async function getCourseList() {
         model: Testimonial
     }).populate({
         path: "modules",
-        model: Module
+        model: Module,
+        populate:{
+            path: "lessonIds",
+            model: Lesson,
+        }
     }).lean();
     return replaceMongoIdInArray(courses);
 }  
